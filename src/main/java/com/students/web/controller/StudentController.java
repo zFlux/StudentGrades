@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.students.db.entity.Grade;
 import com.students.db.entity.Student;
 import com.students.db.service.StudentService;
 
@@ -34,6 +35,20 @@ public class StudentController {
     	
     	List<Student> students = studentService.getStudents();
         return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/grades/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getGradesById(@PathVariable String id) {
+    	
+    	List<Grade> grades = studentService.getGrade(id);
+        return new ResponseEntity<>(grades, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/grades", method = RequestMethod.GET)
+    public ResponseEntity<?> getGrades() {
+    	
+    	List<Grade> grades = studentService.getGrades();
+        return new ResponseEntity<>(grades, HttpStatus.OK);
     }
 	
     @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
