@@ -1,40 +1,38 @@
 package com.students.db.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString(includeFieldNames = true)
 @Entity
-@Table(name = "STUDENT")
+@Table(name = "student")
 public class Student implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @Column(name = "ID", nullable = false, length=150)
-    private String ID;
+    @Column(name = "id", nullable = false, length=10)
+    private String id;
 
-    @Column(name = "FIRSTNAME", length = 150)
-    private String FIRSTNAME;
+    @Column(name = "name", length = 150)
+    private String name;
     
-    public String getFirstName() {
-    	return FIRSTNAME;
-    }
+    @Column(name = "dob")
+    private Date dob;
     
-    public String getID() {
-    	return ID;
-    }
+    @Column(name = "status", length = 50)
+    private String status;
     
-    public void setFirstName(String firstName) {
-    	this.FIRSTNAME = firstName;
-    }
+    @Column(name = "cpi")
+    private Double cpi;
     
-    public void setId(String ID) {
-    	this.ID = ID;
-    }
 } 

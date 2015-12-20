@@ -2,6 +2,8 @@ package com.students.web.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +28,21 @@ public class StudentController {
 	
     ///////////////////////////////////////////////////////////////////////////
     // Students
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getStudents(@PathVariable String id) {
+	
+    @RequestMapping(value = "/students", method = RequestMethod.GET)
+    public ResponseEntity<?> getStudents() {
     	
-    	Student student = studentService.getStudents(id);
+    	List<Student> students = studentService.getStudents();
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+	
+    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getStudent(@PathVariable String id) {
+    	
+    	Student student = studentService.getStudent(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
+    
+
 
 }

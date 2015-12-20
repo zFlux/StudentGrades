@@ -1,5 +1,7 @@
 package com.students.db.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +16,12 @@ public class StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 	
-	public Student getStudents(String id) {
+	public Student getStudent(String id) {
 		return studentRepository.findOne(id);
+	}
+	
+	public List<Student> getStudents() {
+		return studentRepository.findAll();
 	}
 	
 }
