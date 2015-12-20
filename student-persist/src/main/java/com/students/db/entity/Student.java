@@ -7,10 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-@ToString(includeFieldNames = true)
 @Entity
 @Table(name = "STUDENT")
 public class Student implements Serializable {
