@@ -3,7 +3,6 @@ package com.students.db;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -20,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableConfigurationProperties
-@EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = "com.students.db.dao")
 @EntityScan(basePackages = {"com.students.db"})
 @PropertySource("classpath:persistence.properties")
