@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.students.db.entity.Grade;
 import com.students.db.entity.Student;
+import com.students.db.entity.Grade;
 import com.students.db.service.StudentService;
 
 // Basic controller to eventually consume students JSON as well as return JSON
@@ -40,7 +40,7 @@ public class StudentController {
     @RequestMapping(value = "/grades/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getGradesById(@PathVariable String id) {
     	
-    	List<Grade> grades = studentService.getGrade(id);
+    	List<Grade> grades = studentService.getGradesById(id);
         return new ResponseEntity<>(grades, HttpStatus.OK);
     }
     

@@ -13,16 +13,18 @@ import com.students.db.entity.id.GradeId;
 import lombok.Data;
 import lombok.ToString;
 
-@Data
 @ToString(includeFieldNames = true)
-@Entity @IdClass(GradeId.class)
+@Entity
+@Data
+@IdClass(GradeId.class)
 @Table(name = "grade")
-public class Grade  implements Serializable {
-	private static final long serialVersionUID = 2L;
+public class Grade implements Serializable {
 	
+	private static final long serialVersionUID = -6554017341075396787L;
+
 	@Id
-	@Column(name = "id") 
-	private String id;
+	@Column(name = "studentId", length=10) 
+	private String studentId;
 	
 	@Id
 	@Column(name = "year")
@@ -49,4 +51,11 @@ public class Grade  implements Serializable {
     @Column(name = "subjectE", nullable = false, length=20)
     private String subjectE;
     
+    public String getStudentId() {
+    	return this.studentId;
+    }
+    
+    public String getYear() {
+    	return this.year;
+    }
 }

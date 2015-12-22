@@ -10,5 +10,5 @@ import com.students.db.entity.Student;
 @Repository
 @Transactional
 public interface StudentRepository extends JpaRepository<Student, String> {
-
+	
 }
