@@ -11,7 +11,7 @@ import com.students.db.entity.id.GradeId;
 
 @Repository
 @Transactional
-public interface GradesRepository extends JpaRepository<Grade, GradeId>{
+public interface GradeRepository extends JpaRepository<Grade, GradeId>{
 	
 	public List<Grade> findByStudentId(String studentId);
 }
