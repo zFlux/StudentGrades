@@ -11,4 +11,5 @@ import com.students.db.entity.Student;
 @Transactional
 public interface StudentRepository extends JpaRepository<Student, String> {
 	
+	public Student findById(String id);
 }

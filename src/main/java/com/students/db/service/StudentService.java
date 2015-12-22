@@ -22,7 +22,7 @@ public class StudentService {
 	GradesRepository gradesRepository;
 	
 	public Student getStudent(String id) {
-		return studentRepository.findOne(id);
+		return studentRepository.findById(id);
 	}
 	
 	public List<Student> getStudents() {
