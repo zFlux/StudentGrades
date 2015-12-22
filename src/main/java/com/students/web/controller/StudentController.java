@@ -18,8 +18,6 @@ import com.students.db.entity.Grade;
 import com.students.db.service.StudentService;
 import com.students.entity.StudentRecords;
 
-// Basic controller to eventually consume students JSON as well as return JSON
-
 @RestController
 @RequestMapping(consumes = { APPLICATION_JSON_VALUE }, produces = APPLICATION_JSON_VALUE)
 public class StudentController {
@@ -45,26 +43,43 @@ public class StudentController {
 		StudentRecords students = studentService.createStudents(studentRecords);
 		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "/grades/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGradesById(@PathVariable String id) {
-
-		List<Grade> grades = studentService.getGradesById(id);
-		return new ResponseEntity<>(grades, HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/grades", method = RequestMethod.GET)
-	public ResponseEntity<?> getGrades() {
-
-		List<Grade> grades = studentService.getGrades();
-		return new ResponseEntity<>(grades, HttpStatus.OK);
-	}
-
+	
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getStudent(@PathVariable String id) {
 
 		Student student = studentService.getStudent(id);
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/student", method = RequestMethod.POST)
+	public ResponseEntity<?> createStudent(@RequestBody Student student) {
+
+		Student returnStudent = studentService.createStudent(student);
+		return new ResponseEntity<>(returnStudent, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/grade/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getGradesById(@PathVariable String id) {
+
+		List<Grade> grades = studentService.getGradesById(id);
+		return new ResponseEntity<>(grades, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/grade/{id}/{year}", method = RequestMethod.GET)
+	public ResponseEntity<?> getGradesByIdAndYear(@PathVariable String id, @PathVariable String year) {
+
+		Grade grade = studentService.getGradesByIdAndYear(id, year);
+		return new ResponseEntity<>(grade, HttpStatus.OK);
+	}
+
+	
+	@RequestMapping(value = "/grade", method = RequestMethod.POST)
+	public ResponseEntity<?> createGrade(@RequestBody Grade grade) {
+
+		Grade returnGrade = studentService.createGrade(grade);
+		return new ResponseEntity<>(returnGrade, HttpStatus.OK);
+	}
+
+
 
 }

@@ -39,6 +39,10 @@ public class StudentService {
 		return gradeRepository.findByStudentId(id);
 	}
 	
+	public Grade getGradesByIdAndYear(String id, String year) {
+		return gradeRepository.findByStudentIdAndYear(id, year);
+	}
+	
 	public List<Grade> getGrades() {
 		return gradeRepository.findAll();
 	}
@@ -63,6 +67,14 @@ public class StudentService {
 		List<Student> returnStudents = studentRepository.save(students);
 		studentRecords.setData(returnStudents);
 		return studentRecords;
+	}
+
+	public Student createStudent(Student student) {
+		return studentRepository.save(student);
+	}
+
+	public Grade createGrade(Grade grade) {
+		return gradeRepository.save(grade);
 	}
 	
 }
