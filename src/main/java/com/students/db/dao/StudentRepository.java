@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.students.db.entity.Student;
 
 // Repository for accessing Student objects through JPA to the HSQL instance
+
 @Repository
 @Transactional
 public interface StudentRepository extends JpaRepository<Student, String> {
-	
 	public Student findById(String id);
 }

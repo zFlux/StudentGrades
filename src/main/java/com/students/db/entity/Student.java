@@ -38,9 +38,13 @@ public class Student implements Serializable {
     
     @Column(name = "cpi")
     private Double cpi;
-   
+    
     @OneToMany
     @JoinColumn(name="studentId", referencedColumnName="id")
-    private Set<Grade> grades;
+    private Set<Grade> grads;
+    
+    public void setGrade(Grade grade) {
+    	this.grads.add(grade);
+    }
     
 } 
