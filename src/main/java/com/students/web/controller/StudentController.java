@@ -22,27 +22,28 @@ import com.students.entity.StudentRecords;
 @RequestMapping(consumes = { APPLICATION_JSON_VALUE }, produces = APPLICATION_JSON_VALUE)
 public class StudentController {
 
-	// TODO: Working on issues with hooking in the persistence layer here
-
 	@Autowired
 	StudentService studentService;
 
 	///////////////////////////////////////////////////////////////////////////
-	// Students
+	// Student Records
 
-	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	@RequestMapping(value = "/student_records", method = RequestMethod.GET)
 	public ResponseEntity<?> getStudents() {
 
 		StudentRecords students = studentService.getStudents();
 		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/students", method = RequestMethod.POST)
+	@RequestMapping(value = "/student_records", method = RequestMethod.POST)
 	public ResponseEntity<?> createStudents(@RequestBody StudentRecords studentRecords) {
 
 		StudentRecords students = studentService.createStudents(studentRecords);
 		return new ResponseEntity<>(students, HttpStatus.OK);
 	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	// Student
 	
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getStudent(@PathVariable String id) {
@@ -57,6 +58,9 @@ public class StudentController {
 		Student returnStudent = studentService.createStudent(student);
 		return new ResponseEntity<>(returnStudent, HttpStatus.OK);
 	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	// Grade
 
 	@RequestMapping(value = "/grade/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getGradesById(@PathVariable String id) {
@@ -72,7 +76,6 @@ public class StudentController {
 		return new ResponseEntity<>(grade, HttpStatus.OK);
 	}
 
-	
 	@RequestMapping(value = "/grade", method = RequestMethod.POST)
 	public ResponseEntity<?> createGrade(@RequestBody Grade grade) {
 

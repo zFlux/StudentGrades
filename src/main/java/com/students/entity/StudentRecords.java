@@ -7,6 +7,5 @@ import lombok.Data;
 
 @Data
 public class StudentRecords {
-	String version;
 	List<Student> data;
 }

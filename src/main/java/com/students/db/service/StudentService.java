@@ -31,7 +31,6 @@ public class StudentService {
 		List<Student> students = studentRepository.findAll();
 		StudentRecords record = new StudentRecords();
 		record.setData(students);
-		record.setVersion("1.00");
 		return record;
 	}
 	
@@ -48,20 +47,16 @@ public class StudentService {
 	}
 
 	public StudentRecords createStudents(StudentRecords studentRecords) {
-		// TODO Auto-generated method stub
 		List<Student> students = studentRecords.getData();
 		
-		// Set the student id in all the grades records based on parent student record
+		// Set the student id in all the grades records based on parent student record before update
 		for(Student student : students) {
-			
 			Set<Grade> grads = student.getGrads();
 			String id = student.getId();
 			for (Grade grade: grads) {
 				grade.setStudentId(id);
-				gradeRepository.save(grade);
 			}
 			
-			studentRepository.save(student);
 		}
 		
 		List<Student> returnStudents = studentRepository.save(students);
