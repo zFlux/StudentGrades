@@ -3,6 +3,9 @@ package com.students.db;
 import java.util.Properties;
 import javax.sql.DataSource;
 
+import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -54,5 +57,19 @@ public class PersistenceConfig {
     public Properties jpaProperties() {
         return new Properties();
     }
+    
+    @Bean
+    public EmbeddedServletContainerFactory servletContainer() {
+        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
+        return tomcat;
+    }
+    
+	@Bean
+	public ServerProperties serverProperties () {
+		ServerProperties serverProperties = new ServerProperties();
+		serverProperties.setContextPath("");
+		serverProperties.setPort(8080);
+		return serverProperties;
+	};
     
 }
