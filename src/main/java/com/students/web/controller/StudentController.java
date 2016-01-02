@@ -82,6 +82,4 @@ public class StudentController {
 		return new ResponseEntity<>(returnGrade, HttpStatus.OK);
 	}
 
-
-
 }

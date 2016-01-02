@@ -1,40 +1,32 @@
 package com.students;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration;
-import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
-import org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 // Sets up a servlet for the student web service
 @Configuration
-@EnableAutoConfiguration(exclude={AopAutoConfiguration.class, DataSourceAutoConfiguration.class,
-		DataSourceTransactionManagerAutoConfiguration.class, ErrorMvcAutoConfiguration.class,
-		HttpEncodingAutoConfiguration.class, PropertyPlaceholderAutoConfiguration.class,
-		SpringDataWebAutoConfiguration.class, ServerPropertiesAutoConfiguration.class,
-		PersistenceExceptionTranslationAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude={AopAutoConfiguration.class, DataSourceAutoConfiguration.class,
+//		DataSourceTransactionManagerAutoConfiguration.class, ErrorMvcAutoConfiguration.class,
+//		HttpEncodingAutoConfiguration.class, PropertyPlaceholderAutoConfiguration.class,
+//		SpringDataWebAutoConfiguration.class, ServerPropertiesAutoConfiguration.class,
+//		PersistenceExceptionTranslationAutoConfiguration.class, 
+//		MultipartAutoConfiguration.class,
+//		JtaAutoConfiguration.class, JpaBaseConfiguration.class, HibernateJpaAutoConfiguration.class,
+//		JndiDataSourceAutoConfiguration.class, JmxAutoConfiguration.class, JacksonAutoConfiguration.class,
+//		HttpMessageConvertersAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class,
+//		WebMvcAutoConfiguration.class, DispatcherServletAutoConfiguration.class})
 // ServerPropertiesAutoConfiguration sets up a necessary ServerProperties Bean
+// HibernateJpaAutoConfiguration set up neccessary PlatformTransactionManager Bean
+// JpaBaseConfiguration
 
 
 @ComponentScan(basePackages = {"com.students"})
-public class StudentGradesApp  {
-
+public class StudentGradesApp{
+	
 	public static void main(String[] args) {
 		SpringApplication.run(StudentGradesApp.class);
 	}
-	
-	
-
-
-	
 
 }
 
