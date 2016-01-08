@@ -6,7 +6,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
@@ -20,7 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -34,7 +32,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
@@ -50,7 +47,6 @@ public class PersistenceConfig {
 		DataSourceTransactionManager txManager = new DataSourceTransactionManager();
 		txManager.setDataSource(getDataSource());
 		return txManager;
-		
 	}
 	
 	@Bean
@@ -108,38 +104,14 @@ public class PersistenceConfig {
 		return serverProperties;
 	}
 	
-	// Jackson Message Converters
-	@Bean
-	public ObjectMapper objectMapper() {
-		ObjectMapper objectMapper = new ObjectMapper();
-		return objectMapper;
-	}
-	
-	// HttpMessageConverter
-	@Bean
-	public MappingJackson2HttpMessageConverter httpMessageConverter() {
-		MappingJackson2HttpMessageConverter httpMessageConverter = new MappingJackson2HttpMessageConverter();
-		return httpMessageConverter;
-	}
-	
-	@Bean
-	public StringHttpMessageConverter stringMessageConverter() {
-		StringHttpMessageConverter stringMessageConverter = new StringHttpMessageConverter();
-		return stringMessageConverter;
-	}
-	
-	@Bean
-	public HttpMessageConverters messageConverters() {		
-		HttpMessageConverters messageConverters = new HttpMessageConverters();
-		return messageConverters;
-	}
-	
 	// Persistence Exception 
 	@Bean
 	PersistenceExceptionTranslationPostProcessor exceptionProcessor() {
 		PersistenceExceptionTranslationPostProcessor exceptionProcessor = new PersistenceExceptionTranslationPostProcessor();
 		return exceptionProcessor;
 	}
+	
+	// Dispatch Servlet setup and beans
 	
 	@Bean
 	ServletRegistrationBean servletRegistration() {
@@ -155,7 +127,6 @@ public class PersistenceConfig {
 	       return servlet;
 	}
 	
-	
 	// Request mapping handler and adapter to interpret and use controller annotations
 	@Bean
 	public RequestMappingHandlerMapping handlerMapping() {
@@ -167,7 +138,7 @@ public class PersistenceConfig {
 	public RequestMappingHandlerAdapter handlerAdapter() {
 		RequestMappingHandlerAdapter handlerAdapter = new RequestMappingHandlerAdapter();
 		List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
-		converters.add(httpMessageConverter());
+		converters.add(new MappingJackson2HttpMessageConverter());
 		handlerAdapter.setMessageConverters(converters);
 		return handlerAdapter;
 	}
