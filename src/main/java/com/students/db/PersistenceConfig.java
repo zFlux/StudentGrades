@@ -1,5 +1,7 @@
 package com.students.db;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -17,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -28,21 +31,19 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@EnableWebMvc
 @EnableTransactionManagement
 @EnableConfigurationProperties
 @EnableJpaRepositories(basePackages = "com.students.db.dao")
 @EntityScan(basePackages = {"com.students.db"})
 @PropertySource("classpath:persistence.properties")
-public class PersistenceConfig  {
-	
+public class PersistenceConfig {
 	
 	@Bean
 	public PlatformTransactionManager transactionManager() {
@@ -140,14 +141,35 @@ public class PersistenceConfig  {
 		return exceptionProcessor;
 	}
 	
-	
 	@Bean
 	ServletRegistrationBean servletRegistration() {
 		ServletRegistrationBean servletRegistration = new ServletRegistrationBean();
-	       AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-		DispatcherServlet servlet = new DispatcherServlet(rootContext);
-		servletRegistration.setServlet(servlet);
+		servletRegistration.setServlet(servlet());
 		return servletRegistration;
+	}
+	
+	@Bean
+	DispatcherServlet servlet() {
+	       AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+	       DispatcherServlet servlet = new DispatcherServlet(rootContext);
+	       return servlet;
+	}
+	
+	
+	// Request mapping handler and adapter to interpret and use controller annotations
+	@Bean
+	public RequestMappingHandlerMapping handlerMapping() {
+		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
+		return handlerMapping;
+	}
+	
+	@Bean
+	public RequestMappingHandlerAdapter handlerAdapter() {
+		RequestMappingHandlerAdapter handlerAdapter = new RequestMappingHandlerAdapter();
+		List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
+		converters.add(httpMessageConverter());
+		handlerAdapter.setMessageConverters(converters);
+		return handlerAdapter;
 	}
     
 }
