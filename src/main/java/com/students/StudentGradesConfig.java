@@ -1,4 +1,4 @@
-package com.students.db;
+package com.students;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,21 +19,17 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@EnableTransactionManagement
 @EnableConfigurationProperties
 @EnableJpaRepositories(basePackages = "com.students.db.dao")
-@EntityScan(basePackages = {"com.students.db"})
 @PropertySource("classpath:persistence.properties")
-public class PersistenceConfig {
+public class StudentGradesConfig {
 	
 	//*************************************************
 	// Persistence Configuration
@@ -62,7 +57,7 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(getDataSource());
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-
+        entityManager.setPackagesToScan("com.students.db");
         return entityManager;
     }
     
