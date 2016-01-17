@@ -1,6 +1,8 @@
 # StudentGrades
 This is a bare bones Spring Boot application to demonstrate database persistence via a web service.
 
+To get set up:
+
 1. Download this source into STS or eclipse as a maven project
 2. Download HSQL (http://hsqldb.org/). 
 3. Run the create table commands from the setup folder against the default HSQL database server
