@@ -22,6 +22,11 @@ buildSrc/build
 /src/asciidoc/build
 target/
 
+# hsql artifacts
+dbfile.db.log
+dbfile.db.properties
+dbfile.db.lck
+
 # Eclipse artifacts, including WTP generated manifests
 .classpath
 .project
