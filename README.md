@@ -3,7 +3,7 @@ This is a small Spring Boot application to demonstrate database persistence of r
 data via a web service that receives and responds in JSON. Data persistence happens via 
 an existing HSQL database file populated with some example data.
 
-**Set up**
+**Setup**
 
 1. Download this source into Intellij, STS or Eclipse as a maven project
 2. Build and run the StudentGradesApp class
