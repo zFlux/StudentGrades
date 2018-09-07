@@ -1,10 +1,40 @@
-# StudentGrades
-This is a bare bones Spring Boot application to demonstrate database persistence via a web service.
+# Student Grades
+This is a small Spring Boot application to demonstrate database persistence of relational 
+data via a web service that receives and responds in JSON. Data persistence happens via 
+an existing HSQL database file populated with some example data.
 
-To get set up:
+**Set up**
 
-1. Download this source into STS or eclipse as a maven project
-2. Download HSQL (http://hsqldb.org/). 
-3. Run the create table commands from the <b>setup</b> folder against the default HSQL database server
-4. POST the example JSON from the <b>examples</b> folder to the endpoints localhost:8080/student_records, localhost:8080/student, localhost:8080/grade (using Content-Type: application/json)
-5. Play around and modify this example
+1. Download this source into Intellij, STS or Eclipse as a maven project
+2. Build and run the StudentGradesApp class
+
+**Example GET requests**
+
+Retrieve all students and their related grades
+
+```
+curl --header "Content-Type: application/json" http://localhost:8080/student_records
+```
+Retrieve a specific student by student ID
+
+```
+curl --header "Content-Type: application/json" http://localhost:8080/student/UOT-001-1
+```
+
+Retrieve a specific grade by student ID
+
+```
+curl --header "Content-Type: application/json" http://localhost:8080/grade/UOT-001-1
+```
+
+**POST endpoints**
+
+To add a grade or student POST something similar to what is in the "examples" directory 
+to 
+
+```
+http://localhost:8080/grade
+http://localhost:8080/student
+```
+
+Please feel free to modify this example!

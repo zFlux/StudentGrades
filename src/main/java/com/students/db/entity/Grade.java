@@ -10,8 +10,10 @@ import javax.persistence.Table;
 
 import com.students.db.entity.id.GradeId;
 
+import lombok.Data;
 import lombok.ToString;
 
+@Data
 @ToString(includeFieldNames = true)
 @Entity
 @IdClass(GradeId.class)
@@ -48,73 +50,5 @@ public class Grade implements Serializable {
     
     @Column(name = "subject5", nullable = false, length=20)
     private String subject5;
-
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
-	}
-
-	public String getYear() {
-		return year;
-	}
-
-	public void setYear(String year) {
-		this.year = year;
-	}
-
-	public Double getGpi() {
-		return gpi;
-	}
-
-	public void setGpi(Double gpi) {
-		this.gpi = gpi;
-	}
-
-	public String getYear_result() {
-		return year_result;
-	}
-
-	public void setYear_result(String yearResult) {
-		this.year_result = yearResult;
-	}
-
-	public String getSubject1() {
-		return subject1;
-	}
-
-	public void setSubject1(String subject1) {
-		this.subject1 = subject1;
-	}
-
-	public String getSubject2() {
-		return subject2;
-	}
-
-	public void setSubject2(String subject2) {
-		this.subject2 = subject2;
-	}
-
-	public String getSubject3() {
-		return subject3;
-	}
-
-	public void setSubject3(String subject3) {
-		this.subject3 = subject3;
-	}
-
-	public String getSubject4() {
-		return subject4;
-	}
-
-	public void setSubject4(String subject4) {
-		this.subject4 = subject4;
-	}
-
-	public String getSubject5() {
-		return subject5;
-	}
-
-	public void setSubject5(String subject5) {
-		this.subject5 = subject5;
-	}
 	
 }
