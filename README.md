@@ -29,12 +29,13 @@ curl --header "Content-Type: application/json" http://localhost:8080/grade/UOT-0
 
 **POST endpoints**
 
-To add a grade or student POST something similar to what is in the "examples" directory 
-to 
+To add a grade, student or a set of student records, POST something similar to what is in the "examples" directory 
+to these endpoints: 
 
 ```
 http://localhost:8080/grade
 http://localhost:8080/student
+http://localhost:8080/student_records
 ```
 
 Please feel free to modify this example!
