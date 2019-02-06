@@ -5,8 +5,17 @@ an existing HSQL database file populated with some example data.
 
 **Setup**
 
-1. Download this source into Intellij, STS or Eclipse as a maven project
-2. Build and run the StudentGradesApp class
+1. Ensure you have Java version 1.8 and Apache Maven 3.5.4 
+2. Download the source: 
+```
+git clone https://github.com/zFlux/StudentGrades
+```
+3. Build run the project: 
+```
+mvn compile exec:java
+```
+4. That's it! See below for example requests
+
 
 **Example GET requests**
 
