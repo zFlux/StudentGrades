@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.catalina.connector.Connector;
+import org.apache.coyote.http11.AbstractHttp11Protocol;
+import org.apache.log4j.BasicConfigurator;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +39,11 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 public class StudentGradesApp{
 	
 	public static void main(String[] args) {
-		SpringApplication.run(StudentGradesApp.class);
+		BasicConfigurator.configure();
+		SpringApplication.run(StudentGradesApp.class, args);
+
 	}
+
 	
 	//*************************************************
 	// Persistence Configuration
@@ -90,11 +95,23 @@ public class StudentGradesApp{
 	}
 	
 	// Embedded Servlet Container
-    @Bean
-    public EmbeddedServletContainerFactory servletContainer() {
-        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
-        return tomcat;
-    }
+	@Bean
+	public TomcatServletWebServerFactory containerFactory() {
+		return new TomcatServletWebServerFactory() {
+			protected void customizeConnector(Connector connector) {
+				int maxSize = 50000000;
+				super.customizeConnector(connector);
+				connector.setMaxPostSize(maxSize);
+				connector.setMaxSavePostSize(maxSize);
+				if (connector.getProtocolHandler() instanceof AbstractHttp11Protocol) {
+
+					((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setMaxSwallowSize(maxSize);
+					logger.info("Set MaxSwallowSize "+ maxSize);
+				}
+			}
+		};
+
+	}
 	
 	//*************************************************
 	// Web Model View Controller Configuration
