@@ -1,6 +1,7 @@
 package com.students.db.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class StudentService {
 	GradeRepository gradeRepository;
 	
 	public Student getStudent(String id) {
-		return studentRepository.findById(id);
+		Optional<Student> student = studentRepository.findById(id);
+		return student.isPresent() ? student.get() : null;
 	}
 	
 	public StudentRecords getStudents() {
@@ -59,7 +61,7 @@ public class StudentService {
 			
 		}
 		
-		List<Student> returnStudents = studentRepository.save(students);
+		List<Student> returnStudents = studentRepository.saveAll(students);
 		studentRecords.setData(returnStudents);
 		return studentRecords;
 	}
