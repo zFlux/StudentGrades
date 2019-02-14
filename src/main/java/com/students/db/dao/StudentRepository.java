@@ -13,5 +13,5 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface StudentRepository extends JpaRepository<Student, String> {
-	public Optional<Student> findById(String id);
+	Optional<Student> findById(String id);
 }
