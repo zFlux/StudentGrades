@@ -53,7 +53,7 @@ public class StudentService {
 		
 		// Set the student id in all the grades records based on parent student record before update
 		for(Student student : students) {
-			Set<Grade> grads = student.getGrads();
+			Set<Grade> grads = student.getGrades();
 			String id = student.getId();
 			for (Grade grade: grads) {
 				grade.setStudentId(id);

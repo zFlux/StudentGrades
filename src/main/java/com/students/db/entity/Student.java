@@ -42,10 +42,10 @@ public class Student implements Serializable {
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="studentId", referencedColumnName="id")
-    private Set<Grade> grads;
+    private Set<Grade> grades;
     
     public void setGrade(Grade grade) {
-    	this.grads.add(grade);
+    	this.grades.add(grade);
     }
     
 } 
