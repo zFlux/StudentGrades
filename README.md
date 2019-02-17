@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zFlux/StudentGrades.svg?branch=master)](https://travis-ci.org/zFlux/StudentGrades)
+
 # Student Grades
 This is a small Spring Boot application to demonstrate database persistence of relational 
 data via a web service that receives and responds in JSON. Data persistence happens via 
