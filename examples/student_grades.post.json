@@ -1,0 +1,37 @@
+{
+  "data" : [ {
+    "id" : "UOT-001-4",
+    "name" : "Sam Adams",
+    "dob" : "2001-01-01",
+    "status" : "student",
+    "cpi" : 3.45,
+    "grades" : [ {
+      "studentId" : "UOT-001-4",
+      "year" : "2013",
+      "gpi" : 2.12,
+      "year_result" : "pass",
+      "subject1" : "math",
+      "subject2" : "science",
+      "subject3" : "economy",
+      "subject4" : "social study",
+      "subject5" : "music"
+    } ]
+  }, {
+    "id" : "UOT-001-5",
+    "name" : "Bud Weiser",
+    "dob" : "1998-10-10",
+    "status" : "student",
+    "cpi" : 3.5,
+    "grades" : [ {
+      "studentId" : "UOT-001-5",
+      "year" : "2015",
+      "gpi" : 3.87,
+      "year_result" : "pass",
+      "subject1" : "math2",
+      "subject2" : "science",
+      "subject3" : "economy",
+      "subject4" : "social study",
+      "subject5" : "music2"
+    } ]
+  } ]
+}

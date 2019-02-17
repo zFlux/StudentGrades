@@ -1,8 +1,8 @@
 {
   "id" : "UOT-001-3",
-  "name" : "Daniel Christo                                                                                                                                        ",
+  "name" : "Daniel Christo",
   "dob" : "1983-02-24",
-  "status" : "student                                           ",
+  "status" : "student",
   "cpi" : 3.45,
   "grades" : [ ]
 }
