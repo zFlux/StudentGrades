@@ -5,19 +5,19 @@ an existing HSQL database file populated with some example data.
 
 **Setup**
 
-1. Ensure you have Java version 1.8 and Apache Maven 3.5.4 
+1. Ensure you have Java version 1.8 and Apache Maven >=3.5.4 
 2. Download the source: 
 ```
 git clone https://github.com/zFlux/StudentGrades
 ```
-3. Build run the project: 
+3. Build and run the project: 
 ```
 mvn compile exec:java
 ```
 4. That's it! See below for example requests
 
 
-**Example GET requests**
+**Example curl GET requests**
 
 Retrieve all students and their related grades
 
