@@ -1,13 +1,11 @@
 [![Build Status](https://travis-ci.org/zFlux/StudentGrades.svg?branch=master)](https://travis-ci.org/zFlux/StudentGrades)
 
 # Student Grades
-This is a small Spring Boot application to demonstrate database persistence of relational 
-data via a web service that receives and responds in JSON. Data persistence happens via 
-an existing HSQL database file populated with some example data.
+This is a toy Spring Boot application to demonstrate persisting data to a file database file (HSQL) via a web service that receives and responds in JSON. Data persistence happens on an HSQL database file populated with some example data.
 
 **Setup**
 
-1. Ensure you have Java version 1.8 and Apache Maven >=3.5.4 
+1. Install Java v1.8 and Apache Maven >=3.5.4 
 2. Download the source: 
 ```
 git clone https://github.com/zFlux/StudentGrades
