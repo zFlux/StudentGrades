@@ -2,6 +2,7 @@ package com.students.db.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,16 +27,16 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = -8915947718619112697L;
 
 	@Id
-    @Column(name = "id", nullable = false, length=10)
+    @Column(name = "id", nullable = false)
     private String id;
 
-    @Column(name = "name", length = 150)
+    @Column(name = "name")
     private String name;
     
     @Column(name = "dob")
     private String dob;
     
-    @Column(name = "status", length = 50)
+    @Column(name = "status")
     private String status;
     
     @Column(name = "cpi")
@@ -43,10 +44,6 @@ public class Student implements Serializable {
     
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="studentId", referencedColumnName="id")
-    private Set<Grade> grades;
-    
-    public void setGrade(Grade grade) {
-    	this.grades.add(grade);
-    }
+    private List<Grade> grades;
     
 } 

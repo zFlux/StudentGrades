@@ -28,72 +28,54 @@ public class StudentController {
 	// Student Records
 
 	@RequestMapping(value = "/student_records", method = RequestMethod.GET)
-	public ResponseEntity<?> getStudents() {
-
-		StudentRecords students = studentService.getStudents();
-		return new ResponseEntity<>(students, HttpStatus.OK);
+	public StudentRecords getStudents() {
+		return studentService.getStudents();
 	}
 	
 	@RequestMapping(value = "/student_records", method = RequestMethod.POST)
-	public ResponseEntity<?> createStudents(@RequestBody StudentRecords studentRecords) {
-
-		StudentRecords students = studentService.createStudents(studentRecords);
-		return new ResponseEntity<>(students, HttpStatus.OK);
+	public StudentRecords createStudents(@RequestBody StudentRecords studentRecords) {
+		return studentService.createStudents(studentRecords);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	// Student
 	
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getStudent(@PathVariable String id) {
-
-		Student student = studentService.getStudent(id);
-		return new ResponseEntity<>(student, HttpStatus.OK);
+	public Student getStudent(@PathVariable String id) {
+		return studentService.getStudent(id);
 	}
 
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteStudent(@PathVariable String id) {
-
+	public void deleteStudent(@PathVariable String id) {
 		studentService.deleteStudent(id);
-		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
-	public ResponseEntity<?> createStudent(@RequestBody Student student) {
-
-		Student returnStudent = studentService.createStudent(student);
-		return new ResponseEntity<>(returnStudent, HttpStatus.OK);
+	public Student createStudent(@RequestBody Student student) {
+		return studentService.createStudent(student);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	// Grade
 
 	@RequestMapping(value = "/grade/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGradesById(@PathVariable String id) {
-
-		List<Grade> grades = studentService.getGradesById(id);
-		return new ResponseEntity<>(grades, HttpStatus.OK);
+	public List<Grade> getGradesById(@PathVariable String id) {
+		return studentService.getGradesById(id);
 	}
 	
 	@RequestMapping(value = "/grade/{id}/{year}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
-
-		Grade grade = studentService.getGradesByIdAndYear(id, year);
-		return new ResponseEntity<>(grade, HttpStatus.OK);
+	public Grade getGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
+		return studentService.getGradesByIdAndYear(id, year);
 	}
 
 	@RequestMapping(value = "/grade/{id}/{year}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
-
-		Integer successful = studentService.deleteGradesByIdAndYear(id, year);
-		return new ResponseEntity<>(successful, HttpStatus.OK);
+	public Integer deleteGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
+		return studentService.deleteGradesByIdAndYear(id, year);
 	}
 
 	@RequestMapping(value = "/grade", method = RequestMethod.POST)
-	public ResponseEntity<?> createGrade(@RequestBody Grade grade) {
-
-		Grade returnGrade = studentService.createGrade(grade);
-		return new ResponseEntity<>(returnGrade, HttpStatus.OK);
+	public Grade createGrade(@RequestBody Grade grade) {
+		return studentService.createGrade(grade);
 	}
 
 }

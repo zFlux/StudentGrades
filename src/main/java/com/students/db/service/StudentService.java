@@ -13,8 +13,6 @@ import com.students.db.entity.Student;
 import com.students.entity.StudentRecords;
 import com.students.db.entity.Grade;
 
-// Create a service to call for database operations 
-
 @Component
 public class StudentService {
 
@@ -26,6 +24,10 @@ public class StudentService {
 	
 	public Student getStudent(String id) {
 		Optional<Student> student = studentRepository.findById(id);
+		List<Grade> grades = gradeRepository.findByStudentId(id);
+		if (student.isPresent()) {
+		    student.get().setGrades(grades);
+        }
 		return student.isPresent() ? student.get() : null;
 	}
 	
@@ -49,10 +51,11 @@ public class StudentService {
 		
 		// Set the student id in all the grades records based on parent student record before update
 		for(Student student : students) {
-			Set<Grade> grads = student.getGrades();
+			List<Grade> grades = student.getGrades();
 			String id = student.getId();
-			for (Grade grade: grads) {
+			for (Grade grade: grades) {
 				grade.setStudentId(id);
+				gradeRepository.save(grade);
 			}
 			
 		}

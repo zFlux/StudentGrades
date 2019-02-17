@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -43,6 +46,27 @@ public class StudentControllerTest {
     }
 
     @Test
+    public void noStudentOrGrades_createStudentRecords_studentsAndGradesCreated() throws Exception {
+
+        String studentRecordsToCreate = readFile(jsonTestFolder + "/student_grades.post.json", Charset.defaultCharset());
+
+        String firstStudentRecordToCreate = getStudentRecordAtIndex(studentRecordsToCreate, 0);
+        String secondStudentRecordToCreate = getStudentRecordAtIndex(studentRecordsToCreate, 1);
+
+        this.mvc.perform(post("/student_records").content(studentRecordsToCreate).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+        this.mvc.perform(get("/student/UOT-001-4").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(content().json(firstStudentRecordToCreate));
+
+        this.mvc.perform(get("/student/UOT-001-5").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(content().json(secondStudentRecordToCreate));
+
+        this.mvc.perform(delete("/student/UOT-001-4").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        this.mvc.perform(delete("/student/UOT-001-5").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+
+    }
+
+    @Test
     public void student_getStudentByID_studentReturned() throws Exception {
         String expectedString = readFile(jsonTestFolder + "/student.get.json", Charset.defaultCharset());
         this.mvc.perform(get("/student/UOT-001-2").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
@@ -65,7 +89,7 @@ public class StudentControllerTest {
 
     @Test
     public void noGrade_createGrade_GradeCreated() throws Exception {
-        String createdGrade = readFile(jsonTestFolder + "/grades.post.json", Charset.defaultCharset());
+        String createdGrade = readFile(jsonTestFolder + "/grade.post.json", Charset.defaultCharset());
         this.mvc.perform(post("/grade").contentType(MediaType.APPLICATION_JSON).content(createdGrade)).andExpect(status().isOk());
         this.mvc.perform(get("/grade/UOT-001-3/2019").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
                 .andExpect(content().string(createdGrade));
@@ -82,9 +106,16 @@ public class StudentControllerTest {
     }
 
     static String readFile(String path, Charset encoding)
-            throws IOException
-    {
+            throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding).trim();
     }
+
+    static String getStudentRecordAtIndex(String jsonStudentRecords, int index) throws JSONException {
+        JSONObject jsonCreatedStudentRecords = new JSONObject(jsonStudentRecords);
+        JSONArray studentRecordArray = jsonCreatedStudentRecords.getJSONArray("data");
+        return studentRecordArray.getJSONObject(index).toString(2);
+    }
+
+
 }

@@ -33,22 +33,22 @@ public class Grade implements Serializable {
     @Column(name = "gpi")
     private Double gpi;
 	
-    @Column(name = "year_result", nullable = false, length=10)
+    @Column(name = "year_result", nullable = false)
     private String year_result;
     
-    @Column(name = "subject1", nullable = false, length=20)
+    @Column(name = "subject1", nullable = false)
     private String subject1;
     
-    @Column(name = "subject2", nullable = false, length=20)
+    @Column(name = "subject2", nullable = false)
     private String subject2;
     
-    @Column(name = "subject3", nullable = false, length=20)
+    @Column(name = "subject3", nullable = false)
     private String subject3;
     
-    @Column(name = "subject4", nullable = false, length=20)
+    @Column(name = "subject4", nullable = false)
     private String subject4;
     
-    @Column(name = "subject5", nullable = false, length=20)
+    @Column(name = "subject5", nullable = false)
     private String subject5;
 	
 }
