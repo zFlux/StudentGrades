@@ -1,0 +1,57 @@
+{
+  "data" : [ {
+    "id" : "UOT-001-1 ",
+    "name" : "Jack Daniel                                                                                                                                           ",
+    "dob" : "2015-01-27",
+    "status" : "student                                           ",
+    "cpi" : 3.45,
+    "grades" : [ {
+      "studentId" : "UOT-001-1 ",
+      "year" : "2014      ",
+      "gpi" : 3.12,
+      "year_result" : "pass      ",
+      "subject1" : "math                ",
+      "subject2" : "science             ",
+      "subject3" : "economy             ",
+      "subject4" : "social study        ",
+      "subject5" : "music               "
+    }, {
+      "studentId" : "UOT-001-1 ",
+      "year" : "2015      ",
+      "gpi" : 3.06,
+      "year_result" : "fail      ",
+      "subject1" : "math2               ",
+      "subject2" : "science             ",
+      "subject3" : "economy             ",
+      "subject4" : "social study        ",
+      "subject5" : "music2              "
+    } ]
+  }, {
+    "id" : "UOT-001-2 ",
+    "name" : "Bob Methew                                                                                                                                            ",
+    "dob" : "2015-11-03",
+    "status" : "student                                           ",
+    "cpi" : 4.0,
+    "grades" : [ {
+      "studentId" : "UOT-001-2 ",
+      "year" : "2014      ",
+      "gpi" : 3.99,
+      "year_result" : "pass      ",
+      "subject1" : "math                ",
+      "subject2" : "science             ",
+      "subject3" : "economy             ",
+      "subject4" : "social study        ",
+      "subject5" : "music               "
+    }, {
+      "studentId" : "UOT-001-2 ",
+      "year" : "2015      ",
+      "gpi" : 3.87,
+      "year_result" : "pass      ",
+      "subject1" : "math2               ",
+      "subject2" : "science             ",
+      "subject3" : "economy             ",
+      "subject4" : "social study        ",
+      "subject5" : "music2              "
+    } ]
+  } ]
+}

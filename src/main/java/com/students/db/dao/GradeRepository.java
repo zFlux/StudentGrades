@@ -16,4 +16,9 @@ public interface GradeRepository extends JpaRepository<Grade, GradeId>{
 	List<Grade> findByStudentId(String studentId);
 	
 	Grade findByStudentIdAndYear(String studentId, String year);
+
+	Integer deleteByStudentIdAndYear(String studentId, String year);
+
+	Integer deleteByStudentId(String studentId);
+
 }

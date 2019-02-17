@@ -50,6 +50,13 @@ public class StudentController {
 		Student student = studentService.getStudent(id);
 		return new ResponseEntity<>(student, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/student/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteStudent(@PathVariable String id) {
+
+		studentService.deleteStudent(id);
+		return new ResponseEntity<>(null, HttpStatus.OK);
+	}
 	
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
 	public ResponseEntity<?> createStudent(@RequestBody Student student) {
@@ -69,10 +76,17 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/grade/{id}/{year}", method = RequestMethod.GET)
-	public ResponseEntity<?> getGradesByIdAndYear(@PathVariable String id, @PathVariable String year) {
+	public ResponseEntity<?> getGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
 
 		Grade grade = studentService.getGradesByIdAndYear(id, year);
 		return new ResponseEntity<>(grade, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/grade/{id}/{year}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteGradeByIdAndYear(@PathVariable String id, @PathVariable String year) {
+
+		Integer successful = studentService.deleteGradesByIdAndYear(id, year);
+		return new ResponseEntity<>(successful, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/grade", method = RequestMethod.POST)

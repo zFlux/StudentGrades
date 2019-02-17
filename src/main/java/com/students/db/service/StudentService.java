@@ -43,10 +43,6 @@ public class StudentService {
 	public Grade getGradesByIdAndYear(String id, String year) {
 		return gradeRepository.findByStudentIdAndYear(id, year);
 	}
-	
-	public List<Grade> getGrades() {
-		return gradeRepository.findAll();
-	}
 
 	public StudentRecords createStudents(StudentRecords studentRecords) {
 		List<Student> students = studentRecords.getData();
@@ -70,8 +66,16 @@ public class StudentService {
 		return studentRepository.save(student);
 	}
 
+	public void deleteStudent(String id) {
+		gradeRepository.deleteByStudentId(id);
+		studentRepository.deleteById(id);
+	}
+
 	public Grade createGrade(Grade grade) {
 		return gradeRepository.save(grade);
 	}
-	
+
+	public Integer deleteGradesByIdAndYear(String id, String year) {
+		return gradeRepository.deleteByStudentIdAndYear(id, year);
+	}
 }
