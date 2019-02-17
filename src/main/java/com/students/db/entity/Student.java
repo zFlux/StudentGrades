@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @ToString(includeFieldNames = true)
@@ -32,7 +33,7 @@ public class Student implements Serializable {
     private String name;
     
     @Column(name = "dob")
-    private Date dob;
+    private String dob;
     
     @Column(name = "status", length = 50)
     private String status;
